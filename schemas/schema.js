@@ -20,7 +20,14 @@ export default createSchema({
           title: "Постын гарчиг",
           name: "title",
           type: "string",
-          description: "тайлбар 50 тэмдэгтээс хэтрэхгүй байх",
+          description:
+            "Блогийн постын үндсэн гарчиг, 50 тэмдэгтээс бүү хэтрүүлээрэй",
+          validation: (Rule) => [
+            Rule.required()
+              .min(10)
+              .error("Гарчиг хамгийн багдаа 10 тэмдэгт байна"),
+            Rule.max(50).warning("Гарчигийн нийт тэмдэгтийн урт 50"),
+          ],
         },
         {
           title: "Дэд гарчиг",
@@ -29,7 +36,7 @@ export default createSchema({
           description: "Постын төрөл текстээр бичнэ үү",
         },
         {
-          title: "Нийтлэгчийн нэр",
+          title: "Нийтлэлч",
           name: "publisher",
           type: "reference",
           to: [{ type: "publisher" }],
@@ -38,6 +45,22 @@ export default createSchema({
           title: "Постын зураг",
           name: "cover_image",
           type: "image",
+        },
+        {
+          name: "content",
+          type: "array",
+          title: "Постын агуулга",
+          of: [
+            {
+              type: "block",
+            },
+            {
+              type: "image",
+            },
+            {
+              type: "code",
+            },
+          ],
         },
         {
           title: "Огноо",

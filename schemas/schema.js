@@ -45,6 +45,16 @@ export default createSchema({
           title: "Постын зураг",
           name: "cover_image",
           type: "image",
+          fields: [
+            {
+              title: "Зургийн тайлбар",
+              name: "alt",
+              type: "text",
+            },
+          ],
+          options: {
+            hotspot: true,
+          },
         },
         {
           name: "content",
@@ -56,9 +66,46 @@ export default createSchema({
             },
             {
               type: "image",
+              fields: [
+                {
+                  title: "Зургийн тайлбар",
+                  name: "alt",
+                  type: "text",
+                  options: {
+                    isHighlighted: true,
+                  },
+                },
+                {
+                  title: "Зургийн байрлал",
+                  name: "position",
+                  type: "string",
+                  options: {
+                    isHighlighted: true,
+                    list: [
+                      {
+                        title: "Голлуулж",
+                        value: "center",
+                      },
+                      {
+                        title: "Баруун талд",
+                        value: "right",
+                      },
+                      {
+                        title: "Зүүн талд",
+                        value: "left",
+                      },
+                    ],
+                    layout: "radio",
+                  },
+                },
+              ],
+              options: {
+                hotspot: true,
+              },
             },
             {
               type: "code",
+              options: { withFilename: true },
             },
           ],
         },
